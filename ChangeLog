@@ -1,3 +1,8 @@
+Sun Apr 29 2012
+  * Add -button3lowerorraise option [Tadashi MATSUO]
+    With the option, the mouse button3 raises the window when it is not
+    the highest one. Otherwise, the button3 lowers the window.
+
 Version 1.1.0, Sun Jul  3 2011
 
   * Respect maximise states while resizing

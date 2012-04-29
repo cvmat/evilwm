@@ -66,6 +66,19 @@ void client_lower(Client *c) {
 	ewmh_set_net_client_list_stacking(c->screen);
 }
 
+void client_lower_or_raise(Client *c) {
+	struct list *l = NULL;
+	l = list_find(clients_stacking_order, c);
+	if(l->next) {
+		/* If the client is not highest, raise it. */
+		client_raise(c);
+	}
+	else {
+		/* Otherwise, lower it. */
+		client_lower(c);
+	}
+}
+
 /** client_calc_cog:
  *   Calculate the centre of gravity for a particular client
  */

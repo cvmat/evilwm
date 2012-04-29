@@ -52,6 +52,7 @@ static const char *const def_term[] = { DEF_TERM, NULL };
 char **opt_term = (char **)def_term;
 int          opt_bw = DEF_BW;
 int          opt_snap = 0;
+int          opt_button3_lower_or_raise = 0;
 #ifdef SOLIDDRAG
 int          no_solid_drag = 0;  /* use solid drag by default */
 #endif
@@ -78,6 +79,7 @@ static void set_app_geometry(const char *arg);
 static void set_app_dock(void);
 static void set_app_vdesk(const char *arg);
 static void set_app_fixed(void);
+static void set_app_button3_lower_or_raise(void);
 static void set_key_kill(const char *arg);
 
 static struct xconfig_option evilwm_options[] = {
@@ -102,6 +104,7 @@ static struct xconfig_option evilwm_options[] = {
 	{ XCONFIG_CALL_0,   "fixed",        &set_app_fixed },
 	{ XCONFIG_CALL_0,   "f",            &set_app_fixed },
 	{ XCONFIG_CALL_0,   "s",            &set_app_fixed },
+	{ XCONFIG_CALL_0,   "button3lowerorraise", &set_app_button3_lower_or_raise },
 #ifdef SOLIDDRAG
 	{ XCONFIG_BOOL,     "nosoliddrag",  &no_solid_drag },
 #endif
@@ -131,6 +134,7 @@ static void helptext(void) {
 "              [-mask1 modifiers] [-mask2 modifiers] [-altmask modifiers]\n"
 "              [-key.kill key] [-snap num] [-numvdesks num]\n"
 "              [-app name/class] [-g geometry] [-dock] [-v vdesk] [-s]\n"
+"              [-button3lowerorraise]\n"
 "             "
 #ifdef SOLIDDRAG
 " [-nosoliddrag]"
@@ -443,6 +447,10 @@ static void set_app_fixed(void) {
 		Application *app = applications->data;
 		app->vdesk = VDESK_FIXED;
 	}
+}
+
+static void set_app_button3_lower_or_raise(void) {
+	opt_button3_lower_or_raise = 1;
 }
 
 static void set_key_kill(const char *arg) {

@@ -184,7 +184,12 @@ static void handle_button_event(XButtonEvent *e) {
 			case Button2:
 				sweep(c); break;
 			case Button3:
-				client_lower(c); break;
+				if (opt_button3_lower_or_raise) {
+					client_lower_or_raise(c);
+				} else {
+					client_lower(c);
+				}
+				break;
 			default: break;
 		}
 	}

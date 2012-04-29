@@ -253,6 +253,7 @@ extern KeySym           opt_key_kill;
 extern char             **opt_term;
 extern int              opt_bw;
 extern int              opt_snap;
+extern int              opt_button3_lower_or_raise;
 #ifdef SOLIDDRAG
 extern int              no_solid_drag;
 #else
@@ -279,6 +280,7 @@ void client_hide(Client *c);
 void client_show(Client *c);
 void client_raise(Client *c);
 void client_lower(Client *c);
+void client_lower_or_raise(Client *c);
 void client_update_screenpos(Client *c, int screen_x, int screen_y);
 void gravitate_border(Client *c, int bw);
 void select_client(Client *c);
