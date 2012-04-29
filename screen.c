@@ -42,7 +42,9 @@ void sweep(Client *c) {
 
 	if (!grab_pointer(c->screen->root, MouseMask, resize_curs)) return;
 
-	client_raise(c);
+	if (opt_move_with_raise) {
+		client_raise(c);
+	}
 	annotate_create(c, &annotate_sweep_ctx);
 
 	setmouse(c->window, c->width, c->height);
@@ -188,7 +190,9 @@ void drag(Client *c) {
 	int old_screen_y = client_to_Xcoord(c,y);;
 
 	if (!grab_pointer(c->screen->root, MouseMask, move_curs)) return;
-	client_raise(c);
+	if (opt_move_with_raise) {
+		client_raise(c);
+	}
 	get_mouse_position(&x1, &y1, c->screen->root);
 	annotate_create(c, &annotate_drag_ctx);
 	for (;;) {
@@ -241,7 +245,9 @@ void moveresize(Client *c) {
 }
 
 void moveresizeraise(Client *c) {
-	client_raise(c);
+	if (opt_move_with_raise) {
+		client_raise(c);
+	}
 	moveresize(c);
 }
 

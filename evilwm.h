@@ -254,6 +254,7 @@ extern char             **opt_term;
 extern int              opt_bw;
 extern int              opt_snap;
 extern int              opt_button3_lower_or_raise;
+extern int              opt_move_with_raise;
 #ifdef SOLIDDRAG
 extern int              no_solid_drag;
 #else
